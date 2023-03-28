@@ -1,0 +1,19 @@
+
+%h1 Education Information
+
+%table#scores
+  %thead
+    %tr
+      %th College Name
+      %th Degree
+      %th GPA
+
+  %tbody
+    - @educations.each do |education|
+      %tr
+        %td= education.college_name
+        %td= education.degree
+        %td= education.gpa
+
+
+= link_to 'add new', new_student_path

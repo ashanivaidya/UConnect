@@ -1,0 +1,53 @@
+%h1 Application Details
+
+= form_tag student_application_path(@student_application), :method => :put, :id => 'save_application' do
+
+  Institution:
+  = label :student_application, :university_name, @student_application['university_name']
+  %br
+  Program:
+  = label :student_application, :program_name, @student_application['program']
+  %br
+  Degree:
+  = label :student_application, :degree, @student_application['degree']
+  %br
+  Year of Application:
+  = label :student_application, :year_start, @student_application['year_start']
+  %br
+  = label :student_application, :first_name, 'First Name'
+  = text_field :student_application, 'first_name'
+  %br
+  = label :student_application, :last_name, 'Last Name'
+  = text_field :student_application, 'last_name'
+  %br
+  Education History
+  %br
+  = label :student_application, :attended_university_name, 'University'
+  = text_field :student_application, 'attended_university_name'
+  %br
+  = label :student_application, :university_degree, 'Degree'
+  = select :student_application, :university_degree, ['','BS', 'BA', 'MS', 'MA', 'PhD']
+  %br
+  = label :student_application, :gpa, 'GPA'
+  = text_field :student_application, 'gpa'
+  %br
+  = label :student_application, :sat, 'SAT'
+  = text_field :student_application, 'sat'
+  %br
+  = label :student_application, :act, 'ACT'
+  = text_field :student_application, 'act'
+  %br
+  = label :student_application, :gre, 'GRE'
+  = text_field :student_application, 'gre'
+  %br
+  = label :student_application, :toefl, 'TOEFL'
+  = text_field :student_application, 'toefl'
+  %br
+  = label :student_application, :ielts, 'IELTS'
+  = text_field :student_application, 'ielts'
+  %br
+  = submit_tag 'Save Changes'
+= link_to 'View Applications', student_applications_path
+= link_to 'Delete Application', student_application_path(@student_application), :method => :delete, :confirm => 'Are you sure you want to delete this application?'
+%br
+= link_to 'Return to Previous Page', student_applications_path

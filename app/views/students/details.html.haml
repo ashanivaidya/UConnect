@@ -1,0 +1,39 @@
+
+%h1 Student details
+
+%br
+
+%table#student
+  %thead
+    %tr
+      %th First Name
+      %th Last name
+      %th Age
+      %th Email
+      %th Phone
+      %th Address
+      %th City
+      %th State
+      %th Country
+  %tbody
+    %tr
+      %td= @student.first_name
+      %td= @student.last_name
+      %td= @student.age
+      %td= @student.email_id
+      %td= @student.phone
+      %td= @student.address
+      %td= @student.city
+      %td= @student.state
+      %td= @student.country
+
+%br
+%br
+
+= link_to 'Leave review', students_index_path
+%br
+
+= link_to 'Message', students_index_path
+%br
+
+= link_to 'Back', students_index_path

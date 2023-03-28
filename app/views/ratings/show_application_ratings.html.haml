@@ -1,0 +1,15 @@
+
+%h1 All Ratings On Application
+
+%table#rankings{:width=>"50%"}
+  %thead
+    %tr
+      %th Author
+      %th Score (out of 5)
+      %th Comment
+  %tbody
+    - @ratings.each do |rating|
+      %tr
+        %td= User.find(rating.user_id).email
+        %td= rating.rating
+        %td= rating.comment

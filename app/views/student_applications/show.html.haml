@@ -1,0 +1,82 @@
+%h1 Application Details
+
+%ul#details
+  %li
+    Institution:
+    = @student_application.university_name
+  %li
+    Program:
+    = @student_application.program
+  %li
+    Degree:
+    = @student_application.degree
+  %li
+    Year Start:
+    = @student_application.year_start
+  %li
+    First Name:
+    = @student_application.first_name
+  %li
+    Last Name:
+    = @student_application.last_name
+  %li
+    College:
+    = @student_application.attended_university_name
+  %li
+    College Degree:
+    = @student_application.university_degree
+  %li
+    GPA:
+    = @student_application.gpa
+  %li
+    SAT:
+    = @student_application.sat
+  %li
+    ACT:
+    = @student_application.act
+  %li
+    GRE:
+    = @student_application.gre
+  %li
+    TOEFL:
+    = @student_application.toefl
+  %li
+    IELTS:
+    = @student_application.ielts
+  %li
+    Average Rating:
+    = @avg_ratings
+  %li
+    Number of Ratings:
+    = @num_ratings
+  %li
+    Status:
+    = @student_application.status
+
+
+- if (current_user.faculty?)
+  = link_to 'View Ratings', ratings_application_path(:app_id => @student_application.id)
+  %br
+  %br
+  %h5 Review Application
+  = form_tag ratings_create_from_application_path(:application_id => @student_application.id) do
+    = label :rating, :rating, 'Rating'
+    = select :rating, :rating, [1,2,3,4,5]
+    = label :rating, :comment, 'comment'
+    = text_field :comment, 'comment'
+    = submit_tag 'Leave Rating'
+  = link_to 'View Ratings', ratings_application_path(:app_id => @student_application.id)
+  %br
+  %br
+  %h5 Update Application Status
+  = form_tag application_update_status_path(:application_id => @student_application.id) do
+    = label :Application, :application, 'Application Status'
+    = select :Application, :status, %w[Accepted Declined Waitlisted]
+    = submit_tag 'Leave Rating'
+
+  %br
+- if (current_user.student?)
+  = link_to 'Edit Application', edit_student_application_path(@student_application)
+  = link_to 'Delete Application', student_application_path(@student_application), :method => :delete, :confirm => 'Are you sure you want to delete this application?'
+%br
+-#= link_to 'Return to Previous Page', student_applications_path

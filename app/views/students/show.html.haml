@@ -1,0 +1,83 @@
+
+
+%h1 Home
+
+%br
+
+%h2 Search colleges
+%table#colleges{:width=>"100%",:class=>"table table-striped"}
+  %thead
+    %tr
+      %th Institution Name
+      %th Class Size
+      %th Acceptance Rate
+      %th Tuition
+      %th Standardized Tests
+      %th Location
+      %th More info
+  %tbody
+    - @universities.each do |univ|
+      %tr
+        %td= univ['school.name']
+        %td= univ['2013.student.size']
+        %td= if univ['2015.admissions.admission_rate.overall'] != nil then univ['2015.admissions.admission_rate.overall'] else 1.0; end
+        %td= univ['2015.cost.avg_net_price.public']
+        %td= if (univ['2015.admissions.test_requirements'] == 1) then 'Required' elsif (univ['2015.admissions.test_requirements'] == 2) then 'Recommended' elsif (univ['2015.admissions.test_requirements'] == '') then '' else 'Not Required'; end
+        %th= if(univ['school.city'] != nil) then univ['school.city'] + ',' + univ['school.state']; end
+        %th= if univ['school.school_url'] then (if (univ['school.school_url'][0] != 'h') then (link_to univ['school.school_url'], 'https://' + univ['school.school_url']) else (link_to univ['school.school_url'], univ['school.school_url']); end ); end
+        %th= if univ['school.state'] then link_to 'View Programs', programs_path(:school => univ['id']); end
+
+%br
+  = form_tag students_show_path do
+
+    = label :search_terms, 'Search to view university info:'
+    = text_field_tag :search_box
+
+    = submit_tag 'Search Universities', :id => 'search_button'
+%br
+
+%h2 Ranking statistics
+%table#rankings{:width=>"50%",:class=>"table table-striped"}
+  %thead
+    %tr
+      %th GPA Percentile
+      %th Standardized Tests Percentile
+      %th Estimated (%) Chance of Acceptance
+  %tbody
+    %tr
+      %td{:style => 'text-align:center'}= @gpa_rank / @total * 100
+      %td{:style => 'text-align:center'}= @act_rank / @total * 100
+      %td{:style => 'text-align:center'}= (1 - (@gpa_rank /@total + @act_rank/@total)/2) * 100
+
+%br
+%br
+
+%h2 Profile Info
+%table#students{:width=>"65%",:class=>"table table-striped"}
+  %thead
+    %tr
+      %th First Name
+      %th Last name
+      %th Age
+      %th Email
+      %th Phone
+      %th Address
+      %th City
+      %th State
+      %th Country
+  %tbody
+    %tr
+      %td{:style => 'text-align:center'}= @student.first_name
+      %td{:style => 'text-align:center'}= @student.last_name
+      %td{:style => 'text-align:center'}= @student.age
+      %td{:style => 'text-align:center'}= @student.email_id
+      %td{:style => 'text-align:center'}= @student.phone
+      %td{:style => 'text-align:center'}= @student.address
+      %td{:style => 'text-align:center'}= @student.city
+      %td{:style => 'text-align:center'}= @student.state
+      %td{:style => 'text-align:center'}= @student.country
+= link_to "Edit personal information", edit_student_path(current_user.id)
+%br
+%br
+%h2 My applications
+= link_to "View my applications", student_applications_path(@student)

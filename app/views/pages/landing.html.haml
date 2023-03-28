@@ -1,0 +1,47 @@
+
+
+- if user_signed_in?
+  %h1= "Welcome #{current_user.email}!"
+  - if current_user.faculty?
+    = link_to 'Open your Faculty Dashboard', faculty_index_path
+    %br
+    %br
+    -if Faculty.where("email_id = '#{current_user.email}'").first.university_name.nil?
+      -if @show_table
+        %h2 Select your university - Required for approval
+        = form_tag update_university_path do
+
+          %table#colleges{:width=>"100%"}
+            %thead
+              %tr
+                %th Institution Name
+                %th Location
+                %th Webpage
+                %th Select
+            %tbody
+              - @universities.each do |univ|
+                %tr
+                  %td= univ['school.name']
+                  %th= if(univ['school.city'] != nil) then univ['school.city'] + ',' + univ['school.state']; end
+                  %th= if univ['school.school_url'] then (if (univ['school.school_url'][0] != 'h') then (link_to univ['school.school_url'], 'https://' + univ['school.school_url']) else (link_to univ['school.school_url'], univ['school.school_url']); end ); end
+                  %td= radio_button_tag "users[#{univ['school.name']}", :id => "radio_button_#{univ['school.name']}"
+
+          = submit_tag 'Add Selected University to Account', :id => 'confirm_button'
+      %br
+      = form_tag root_path do
+
+        = label :search_terms, 'Search to view university info:'
+        = text_field_tag :search_box
+
+        = submit_tag 'Search Universities', :id => 'search_button'
+      %br
+
+  - elsif current_user.student?
+    %br
+    %br
+    = link_to 'Open your Student Dashboard', students_show_path
+
+  - else
+    %br
+    %br
+    = link_to 'Admin Dashboard', admin_path

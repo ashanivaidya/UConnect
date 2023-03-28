@@ -1,0 +1,17 @@
+%h1 Programs for #{@programs[0]['school']['name']}
+
+%table#programs{:cellpadding => 1, :cellspacing => 10}
+  %thead
+    %tr
+      %th Institution
+      %th Program
+      %th Degree
+  %tbody
+    - @programs.each do |program|
+      %tr
+        %td= program['school']['name']
+        %td= program['title'].tr('.','')
+        %td= program['credential']['title']
+        %td= link_to "Apply", new_student_application_path(:program => {:university_id => program['school']['unit_id'], :university_name => program['school']['name'], :program => program['title'].tr('.',''), :degree => program['credential']['title'], :year_start => '2022'})
+%br
+= link_to 'Return to Previous Page', students_show_path

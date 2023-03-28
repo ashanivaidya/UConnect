@@ -1,0 +1,47 @@
+
+%h1{:style => 'text-align:center'} Faculty Home
+
+%table#students{:width=>"100%",:class  => "table table-dark"}
+  %thead
+    %tr
+      %th= link_to 'First Name', students_index_path(:order => :first_name)
+      %th Last name
+      %th= link_to 'Age', students_index_path(:order => :age)
+      %th Email
+      %th Phone
+      %th Address
+      %th City
+      %th State
+      %th Country
+      %th= link_to 'GPA', students_index_path(:order => :gpa)
+      %th College
+      %th Degree
+      %th= link_to 'SAT', students_index_path(:order => :sat)
+      %th= link_to 'ACT', students_index_path(:order => :act)
+      %th GRE
+      %th TOEFL
+      %th IELTS
+      %th More
+  %tbody
+    - @students.each do |student|
+      %tr
+        %td= student.first_name
+        %td= student.last_name
+        %td= student.age
+        %td= student.email_id
+        %td= student.phone
+        %td= student.address
+        %td= student.city
+        %td= student.state
+        %td= student.country
+        %td= if (Education.find_by_student_id(student.id).respond_to?(:gpa)) then Education.find_by_student_id(student.id).gpa; end
+        %td= if (Education.find_by_student_id(student.id).respond_to?(:college_name)) then Education.find_by_student_id(student.id).college_name; end
+        %td= if (Education.find_by_student_id(student.id).respond_to?(:degree)) then Education.find_by_student_id(student.id).degree; end
+        %td= if (Score.find_by_student_id(student.id).respond_to?(:sat)) then Score.find_by_student_id(student.id).sat; end
+        %td= if (Score.find_by_student_id(student.id).respond_to?(:act)) then Score.find_by_student_id(student.id).act; end
+        %td= if (Score.find_by_student_id(student.id).respond_to?(:gre)) then Score.find_by_student_id(student.id).gre; end
+        %td= if (Score.find_by_student_id(student.id).respond_to?(:toefl)) then Score.find_by_student_id(student.id).toefl; end
+        %td= if (Score.find_by_student_id(student.id).respond_to?(:ielts)) then Score.find_by_student_id(student.id).ielts; end
+        %td= link_to 'details', students_details_path(:id => student.id)
+
+

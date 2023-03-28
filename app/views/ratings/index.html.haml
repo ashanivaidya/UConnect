@@ -1,0 +1,20 @@
+
+%h1{:style => 'text-align:center'} Ratings
+
+%table#students
+  %thead
+    %tr
+      %th ID
+      %th Rating
+      %th ApplicationID
+      %th UserID
+  %tbody
+    - @ratings.each do |rating|
+      %tr
+        %td= rating.id
+        %td= rating.rating
+        %td= rating.student_application_id
+        %td= rating.user_id
+%br
+%br
+

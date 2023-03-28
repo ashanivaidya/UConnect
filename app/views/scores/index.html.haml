@@ -1,0 +1,24 @@
+
+%h1 Exam scores
+
+%table#scores
+  %thead
+    %tr
+      %th ID
+      %th SAT
+      %th ACT
+      %th GRE
+      %th TOEFL
+      %th IELTS
+
+  %tbody
+    - @scores.each do |score|
+      %tr
+        %td= score.id
+        %td= score.sat
+        %td= score.act
+        %td= score.gre
+        %td= score.toefl
+        %td= score.ielts
+
+= link_to 'add new', new_student_path

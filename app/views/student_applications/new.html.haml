@@ -1,0 +1,52 @@
+%h1 Application Details
+
+= form_tag student_applications_save_application_path(:program => @university_program), :method => :post, :id => 'save_application' do
+
+  Institution:
+  = label :program, :university_name, @university_program['university_name']
+  %br
+  Program:
+  = label :program, :program_name, @university_program['program']
+  %br
+  Degree:
+  = label :program, :degree, @university_program['degree']
+  %br
+  Year of Application:
+  = label :program, :year_start, '2022'
+  %br
+  = label :student_application, :first_name, 'First Name'
+  = text_field :student_application, 'first_name'
+  %br
+  = label :student_application, :last_name, 'Last Name'
+  = text_field :student_application, 'last_name'
+  %br
+  Education History
+  %br
+  = label :student_application, :attended_university_name, 'University'
+  = text_field :student_application, 'attended_university_name'
+  %br
+  = label :student_application, :university_degree, 'Degree'
+  = select :student_application, :university_degree, ['','BS', 'BA', 'MS', 'MA', 'PhD']
+  %br
+  = label :student_application, :gpa, 'GPA'
+  = text_field :student_application, 'gpa'
+  %br
+  = label :student_application, :sat, 'SAT'
+  = text_field :student_application, 'sat'
+  %br
+  = label :student_application, :act, 'ACT'
+  = text_field :student_application, 'act'
+  %br
+  = label :student_application, :gre, 'GRE'
+  = text_field :student_application, 'gre'
+  %br
+  = label :student_application, :toefl, 'TOEFL'
+  = text_field :student_application, 'toefl'
+  %br
+  = label :student_application, :ielts, 'IELTS'
+  = text_field :student_application, 'ielts'
+  %br
+  = submit_tag 'Save Changes'
+= link_to 'View Applications', student_applications_path
+%br
+= link_to 'Return to Home Page', students_show_path

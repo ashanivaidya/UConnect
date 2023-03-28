@@ -1,0 +1,14 @@
+%h1 Create New Rating
+
+= form_tag ratings_create_path do
+
+  = label :rating, :rating, 'Rating'
+  = select :rating, :rating, [1,2,3,4,5]
+
+  = label :rating, :release_date, 'User ID'
+  = text_field :user, 'User ID'
+
+  = label :rating, :title, 'Application ID'
+  = text_field :app, 'Application ID'
+
+  = submit_tag 'Save Changes'

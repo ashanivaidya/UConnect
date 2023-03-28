@@ -1,0 +1,47 @@
+%h1{:style => 'text-align:center'} Applications
+
+%table#student_applications{:width=>"100%", :class=>"table"}
+  %thead{:class=>"thead-dark"}
+    %tr
+      %th= link_to 'First Name', faculty_index_path(:order => :first_name)
+      %th Last Name
+      %th Email
+      %th Institution
+      %th Program
+      %th Degree
+      %th Begin Year
+      %th= link_to 'GPA', faculty_index_path(:order => :gpa)
+      %th= link_to 'SAT', faculty_index_path(:order => :sat)
+      %th= link_to 'ACT', faculty_index_path(:order => :act)
+      %th= link_to 'GRE', faculty_index_path(:order => :gre)
+      %th= link_to 'TOEFL', faculty_index_path(:order => :toefl)
+      %th= link_to 'IELTS', faculty_index_path(:order => :ielts)
+      %th Avg Rating
+      %th Num Ratings
+      %th Status
+      %th Details
+  %tbody
+    - @student_applications.each do |student_application|
+      %tr
+        %td= student_application.first_name
+        %td= student_application.last_name
+        %td= Student.where("id = #{student_application.student_id}").first.email_id
+        %td= student_application.university_name
+        %td= student_application.program
+        %td= student_application.degree
+        %td= student_application.year_start
+        %td= student_application.gpa
+        %td= student_application.sat
+        %td= student_application.act
+        %td= student_application.gre
+        %td= student_application.toefl
+        %td= student_application.ielts
+        %td= Rating.average(student_application.id)
+        %td= Rating.number(student_application.id)
+        %td= student_application.status
+        %td= link_to "View", student_application_path(student_application)
+
+%br
+= link_to 'View My Ratings', ratings_user_path(:user_id => current_user.id)
+%br
+= link_to 'Return to Previous Page', students_show_path

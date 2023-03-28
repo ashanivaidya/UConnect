@@ -1,0 +1,16 @@
+<fieldset>
+  <div class="field">
+  <%= f.label :gpa, 'GPA' %>
+  <%= f.text_field :gpa  %>
+  </div>
+  <div class="field">
+    <%= f.label :college_name, 'College Name' %>
+    <%= f.text_field :college_name  %>
+  </div>
+  <div class="field">
+    <%= f.label :degree, 'Degree' %>
+    <%= f.text_field :degree  %>
+  </div>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "remove", '#', class: "remove_fields" %>
+</fieldset>

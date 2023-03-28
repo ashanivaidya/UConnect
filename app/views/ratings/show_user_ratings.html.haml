@@ -1,0 +1,17 @@
+
+%h1 All Ratings By User
+
+%table#rankings{:width=>"50%"}
+  %thead
+    %tr
+      %th Application ID
+      %th Application Author
+      %th Score (out of 5)
+      %th Comment
+  %tbody
+    - @ratings.each do |rating|
+      %tr
+        %td= StudentApplication.find(rating.student_application_id).id
+        %td= Student.find(StudentApplication.find(rating.student_application_id).student_id).first_name + " " + Student.find(StudentApplication.find(rating.student_application_id).student_id).last_name
+        %td= rating.rating
+        %td= rating.comment

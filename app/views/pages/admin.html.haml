@@ -1,0 +1,28 @@
+
+
+%h1 Unconfirmed Faculty Accounts
+
+= form_tag pages_update_users_path do
+  %table#faculty
+    %thead
+      %tr
+        %th Email
+        %th Created At
+        %th Role
+        %th University Name
+        %th Status
+        %th Select
+    %tbody
+
+      - @users.each do |user|
+        %tr
+          %td= user[:email]
+          %td= user[:created_at]
+          %td= user[:role]
+          %td= Faculty.where("email_id='#{user.email}'").first.university_name
+          %td= user[:status]
+
+          %td= check_box_tag "users[#{user[:id]}", :id => "checkbox_#{user[:id]}"
+
+  = submit_tag 'Confirm Accounts', :id => 'confirm_button'
+

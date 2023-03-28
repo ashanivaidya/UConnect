@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sat:</strong>
+  <%= @score.sat %>
+</p>
+
+<p>
+  <strong>Act:</strong>
+  <%= @score.act %>
+</p>
+
+<p>
+  <strong>Gre:</strong>
+  <%= @score.gre %>
+</p>
+
+<p>
+  <strong>Toefl:</strong>
+  <%= @score.toefl %>
+</p>
+
+<p>
+  <strong>Ielts:</strong>
+  <%= @score.ielts %>
+</p>
+
+<%= link_to 'Edit', edit_score_path(@score) %> |
+<%= link_to 'Back', scores_path %>

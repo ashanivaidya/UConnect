@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Scores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sat</th>
+      <th>Act</th>
+      <th>Gre</th>
+      <th>Toefl</th>
+      <th>Ielts</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scores.each do |score| %>
+      <tr>
+        <td><%= score.sat %></td>
+        <td><%= score.act %></td>
+        <td><%= score.gre %></td>
+        <td><%= score.toefl %></td>
+        <td><%= score.ielts %></td>
+        <td><%= link_to 'Show', score %></td>
+        <td><%= link_to 'Edit', edit_score_path(score) %></td>
+        <td><%= link_to 'Destroy', score, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Score', new_score_path %>

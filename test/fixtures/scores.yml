@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sat: 1
+  act: 1
+  gre: 1
+  toefl: 1
+  ielts: 1.5
+
+two:
+  sat: 1
+  act: 1
+  gre: 1
+  toefl: 1
+  ielts: 1.5
