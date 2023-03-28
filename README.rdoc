@@ -1,4 +1,12 @@
-# UConnect
- A student portal for university application system and review process
+UConnect - 
+A student portal for university application system and review process
  
-### Various roles - admin, faculty, student  
+Various roles available - admin, faculty, student  
+
+Functionalities available-
+1. Student/Faculty can sign in/sign up using normal login, third party authentication like Github, Google
+2. After account creation, the student can search for his targeted universities and apply
+3. Student has to add all the information once to his profile, it will be used for all his applications and can even add SOPs and LORs, references
+4. Faculty can review the student's applications for his university and leave score based on the profile and make appropriate decisions like accept/reject
+5. Student/faculties can send messages to other students and faculties
+...
